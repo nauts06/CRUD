@@ -39,7 +39,7 @@ const App = () => {
           .patch(`http://localhost:5000/api/update/${editId}`, values)
           .then((response) => {
             getAllData();
-            // formik.setValues("")
+            setToggle(false)
             formik.handleReset();
           })
           .catch((error) => {
