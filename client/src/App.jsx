@@ -13,7 +13,7 @@ const App = () => {
 
   const getAllData = () => {
     axios
-      .get("http://localhost:5000/api/getAll")
+      .get(`/api/getAll`)
       .then((response) => {
         console.log("datahhhh", response);
         setData(response.data);
@@ -36,7 +36,7 @@ const App = () => {
     onSubmit: (values) => {
       if (toggle === true) {
         axios
-          .patch(`http://localhost:5000/api/update/${editId}`, values)
+          .patch(`/api/update/${editId}`, values)
           .then((response) => {
             getAllData();
             setToggle(false)
@@ -47,7 +47,7 @@ const App = () => {
           });
       } else {
         axios
-          .post("http://localhost:5000/api/post", values)
+          .post(`/api/post`, values)
           .then((response) => {
             getAllData();
             // formik.setValues("")
@@ -64,7 +64,7 @@ const App = () => {
     setEditId(id);
     setToggle(true);
     axios
-      .get(`http://localhost:5000/api/getOne/${id}`)
+      .get(`/api/getOne/${id}`)
       .then((response) => {
         // setEditData(response.data);
         formik.setValues(response.data);
@@ -75,7 +75,7 @@ const App = () => {
   };
   const getDataDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/api/delete/${id}`)
+      .delete(`/api/delete/${id}`)
       .then((response) => {
         getAllData();
       })
