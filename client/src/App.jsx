@@ -13,7 +13,7 @@ const App = () => {
 
   const getAllData = () => {
     axios
-      .get(`/api/getAll`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/getAll`)
       .then((response) => {
         console.log("datahhhh", response);
         setData(response.data);
@@ -36,10 +36,10 @@ const App = () => {
     onSubmit: (values) => {
       if (toggle === true) {
         axios
-          .patch(`/api/update/${editId}`, values)
+          .patch(`${process.env.REACT_APP_BACKEND_URL}/api/update/${editId}`, values)
           .then((response) => {
             getAllData();
-            setToggle(false)
+            setToggle(false);
             formik.handleReset();
           })
           .catch((error) => {
@@ -47,7 +47,7 @@ const App = () => {
           });
       } else {
         axios
-          .post(`/api/post`, values)
+          .post(`${process.env.REACT_APP_BACKEND_URL}/api/post`, values)
           .then((response) => {
             getAllData();
             // formik.setValues("")
@@ -64,7 +64,7 @@ const App = () => {
     setEditId(id);
     setToggle(true);
     axios
-      .get(`/api/getOne/${id}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/getOne/${id}`)
       .then((response) => {
         // setEditData(response.data);
         formik.setValues(response.data);
@@ -75,7 +75,7 @@ const App = () => {
   };
   const getDataDelete = (id) => {
     axios
-      .delete(`/api/delete/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/api/delete/${id}`)
       .then((response) => {
         getAllData();
       })
@@ -143,30 +143,30 @@ const App = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.map((elem, i) => (
-                  <tr key={elem._id}>
-                    <th>{i + 1}</th>
-                    <td>{elem.email}</td>
-                    <td>{elem.password}</td>
-
-                    <td>
-                      <button
-                        className="btn btn-neutral"
-                        onClick={() => getOneData(elem._id)}
-                      >
-                        Edit
-                      </button>{" "}
-                    </td>
-                    <td>
-                      <button
-                        className="btn btn-neutral"
-                        onClick={() => getDataDelete(elem._id)}
-                      >
-                        Delete
-                      </button>{" "}
-                    </td>
-                  </tr>
-                ))}
+                {
+                  data.map((elem, i) => (
+                    <tr key={elem._id}>
+                      <th>{i + 1}</th>
+                      <td>{elem.email}</td>
+                      <td>{elem.password}</td>
+                      <td>
+                        <button
+                          className="btn btn-neutral"
+                          onClick={() => getOneData(elem._id)}
+                        >
+                          Edit
+                        </button>{" "}
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-neutral"
+                          onClick={() => getDataDelete(elem._id)}
+                        >
+                          Delete
+                        </button>{" "}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import  axios  from 'axios';
 // import { Provider } from 'react-redux';
 // import { store } from './store';
-axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
+
+// axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
