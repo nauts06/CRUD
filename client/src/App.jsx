@@ -143,7 +143,7 @@ const App = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.map((elem, i) => (
+                {data  && data.map((elem, i) => (
                   <tr key={elem._id}>
                     <th>{i + 1}</th>
                     <td>{elem.email}</td>
