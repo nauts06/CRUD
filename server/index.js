@@ -6,7 +6,7 @@ const routes = require('./routes/routes')
 const express = require("express")
 const app = express()
 const helmet =  require("helmet")
-
+const path = require("path")
 
 
 // database start
@@ -28,7 +28,8 @@ app.use(helmet.contentSecurityPolicy({
       "script-src-attr":[ "'none'" ],
       "style-src":[ "'self'", "https:", "'unsafe-inline'" ],
   }
-}))
+})) 
+ 
 
 
 app.use(express.urlencoded({ extended: true }));
