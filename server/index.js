@@ -23,12 +23,15 @@ app.use(helmet.contentSecurityPolicy({
       "base-uri":[ "'self'" ],
       "font-src":[ "'self'", "https:", "data:" ],
       "frame-ancestors":[ "'self'" ],
-      // "img-src":[ "'self'", "data:", "http://res.cloudinary.com"],
+      "img-src":[ "'self'", "data:", "http://res.cloudinary.com"],
       "script-src":[ "'self'" ],
       "script-src-attr":[ "'none'" ],
       "style-src":[ "'self'", "https:", "'unsafe-inline'" ],
   }
 }))
+
+
+
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -37,12 +40,13 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 //routes
 app.use('/api',routes)
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
 
